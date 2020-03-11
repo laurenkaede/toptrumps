@@ -2,7 +2,7 @@
 //                                          Top Trumps - Harry Potter - Challenge                                             //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-// Class created called 'Card' which will hold the name of the character and the accompanying five statistics.
+//* Function created called 'Card' which will hold the name of the character and the accompanying five statistics.
 
 function card(name, magicalAbility, wandLength, familyTree, fearFactor, ttRating) {
     this._name = name;
@@ -13,7 +13,7 @@ function card(name, magicalAbility, wandLength, familyTree, fearFactor, ttRating
     this._ttRating = ttRating; // Scale: 0 - 30 with 30 being the winning value.
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-// Full card deck. Each card is a variable.
+//* Full card deck. Each card is a variable.
 
 let harryCard = new card("Harry Potter", 5, 11, 7, 4, 30);
 let albusCard = new card("Albus Dumbledore", 10, 15, 4, 7, 27);
@@ -47,14 +47,15 @@ let luciusCard = new card("Lucius Malfoy", 9, 18, 4, 7, 14);
 let choCard = new card("Cho Chang", 6, 11, 2, 2, 5);
 let peterCard = new card("Peter Pettigrew", 1, 9, 3, 6, 13);
 
-// Two decks of cards created as variables and corresponding cards placed in an array.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//* Two decks of cards created as variables and corresponding cards placed in an array.
 
 let deck1 = [harryCard, albusCard, snapeCard, siriusCard, ronCard, hermioneCard, voldemortCard, cedricCard, bellatrixCard, hagridCard, fleurCard, fenrirCard, ginnyCard, finchCard, lupinCard];
 
 let deck2 = [lunaCard, dracoCard, mollyCard, nevilleCard, minervaCard, sybillCard, tonksCard, horaceCard, krumCard, quirrellCard, lockhartCard, arthurCard, luciusCard, choCard, peterCard];
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-// Player interactive variables created for use within the Top Trumps game.
+//* Variables created for use within the Top Trumps game.
 
 let welcomeMessage = ("Welcome to Top Trumps Harry Potter! Would you like to play? Please type 'yes' or 'no'.");
 let goodbyeMessage = ("Would you like to end the game? Please type 'yes' or 'no'.");
@@ -69,11 +70,14 @@ let chooseCard2 = (`${playerName2} would you like to see your card? Please type 
 let compareAttribute1 = (`${playerName1} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type '1', '2', '3', '4' or '5'`);
 let compareAttribute2 = (`${playerName2} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type '1', '2', '3', '4' or '5'`);
 
-let chosenCard1 = deck1.shift();
-let chosenCard2 = deck2.shift();
+let chosenCard1 = [];
+let chosenCard2 = [];
+let chosenCardDraw = [];
+chosenCardDraw.push(chosenCard1, chosenCard2);
+
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-// Start game function.
+//* Start and end game function.
 
 welcomeToGame();
 
@@ -89,175 +93,6 @@ function welcomeToGame() {
     }
 }
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-// Chosen Player Card functions.
-
-
-function playCard1() {
-    chosenCard1 = deck1.shift();
-    alert(`Your card is ${chosenCard1._name}! ${chosenCard1._name}'s Magical Abilities are rated ${chosenCard1._magicalAbility}, their Wand Length is ${chosenCard1._wandLength}, their Family Tree consists of ${chosenCard1._familyTree} members of family, their Fear Factor is ${chosenCard1._fearFactor} and their Top Trumps rating is ${chosenCard1._ttRating}.`);
-    console.log(chosenCard1);
-    playGame2();
-}
-
-function playCard2() {
-    chosenCard2 = deck2.shift();
-    alert(`Your card is ${chosenCard2._name}! ${chosenCard2._name}'s Magical Abilities are rated ${chosenCard2._magicalAbility}, their Wand Length is ${chosenCard2._wandLength}, their Family Tree consists of ${chosenCard2._familyTree} members of family, their Fear Factor is ${chosenCard2._fearFactor} and their Top Trumps rating is ${chosenCard2._ttRating}.`);
-    console.log(chosenCard2);
-    compareAttributeP1();
-}
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-// Attribute comparison functions. *** LIMBO state to be added next ***
-
-function compareAttributeP1() {
-    compareAttribute1 = prompt(`${playerName1} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type '1', '2', '3', '4' or '5'`);
-    if (compareAttribute1 == "1") {
-        alert(`${chosenCard1._name}'s Magical Ability is ${chosenCard1._magicalAbility} and  ${chosenCard2._name}'s Magical Ability is ${chosenCard2._magicalAbility}.`);
-        compareMagicalAbility();
-    } if (compareAttribute1 == "2") {
-        alert(`${chosenCard1._name}'s Wand Length is ${chosenCard1._wandLength} and  ${chosenCard2._name}'s Wand Length is ${chosenCard2._wandLength}.`);
-        compareWandLength();
-    } if (compareAttribute1 == "3") {
-        alert(`${chosenCard1._name}'s Family Tree is ${chosenCard1._familyTree} and  ${chosenCard2._name}'s Family Tree is ${chosenCard2._familyTree}.`);
-        compareFamilyTree();
-    } if (compareAttribute1 == "4") {
-        alert(`${chosenCard1._name}'s Fear Factor is ${chosenCard1._fearFactor} and  ${chosenCard2._name}'s Fear Factor is ${chosenCard2._fearFactor}.`);
-        compareFearFactor();
-    } if (compareAttribute1 == "5") {
-        alert(`${chosenCard1._name}'s Top Trumps Rating is ${chosenCard1._ttRating} and  ${chosenCard2._name}'s Top Trumps Rating is ${chosenCard2._ttRating}.`);
-        compareTTRating();
-    } else {
-        compareAttribute1 = prompt(`${playerName1} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type 'one', '2', '3', '4' or '5'`);
-    }
-}
-
-function compareAttributeP2() {
-    compareAttribute2 = prompt(`${playerName2} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type '1', '2', '3', '4' or '5'`);
-    if (compareAttribute2 == "1") {
-        alert(`${chosenCard1._name}'s Magical Ability is ${chosenCard1._magicalAbility} and  ${chosenCard2._name}'s Magical Ability is ${chosenCard2._magicalAbility}.`);
-        compareMagicalAbility();
-    } if (compareAttribute2 == "2") {
-        alert(`${chosenCard1._name}'s Wand Length is ${chosenCard1._wandLength} and  ${chosenCard2._name}'s Wand Length is ${chosenCard2._wandLength}.`);
-        compareWandLength();
-    } if (compareAttribute2 == "3") {
-        alert(`${chosenCard1._name}'s Family Tree is ${chosenCard1._familyTree} and  ${chosenCard2._name}'s Family Tree is ${chosenCard2._familyTree}.`);
-        compareFamilyTree();
-    } if (compareAttribute2 == "4") {
-        alert(`${chosenCard1._name}'s Fear Factor is ${chosenCard1._fearFactor} and  ${chosenCard2._name}'s Fear Factor is ${chosenCard2._fearFactor}.`);
-        compareFearFactor();
-    } if (compareAttribute2 == "5") {
-        alert(`${chosenCard1._name}'s Top Trumps Rating is ${chosenCard1._ttRating} and  ${chosenCard2._name}'s Top Trumps Rating is ${chosenCard2._ttRating}.`);
-        compareTTRating();
-    } else {
-        compareAttribute2 = prompt(`${playerName1} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type 'one', '2', '3', '4' or '5'`);
-    }
-}
-
-
-
-function compareMagicalAbility() {
-    if (chosenCard1._magicalAbility > chosenCard2._magicalAbility) {
-        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
-        playGame1();
-    } else if (chosenCard1._magicalAbility < chosenCard2._magicalAbility) {
-        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
-        playGame2();
-    } else {
-        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
-        playGame1();
-    }
-}
-
-function compareWandLength() {
-    if (chosenCard1._wandLength > chosenCard2._wandLength) {
-        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
-        playGame1();
-    }
-    if (chosenCard1._wandLength < chosenCard2._wandLength) {
-        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
-        playGame2();
-    } else {
-        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
-        playGame1();
-    }
-}
-
-function compareFamilyTree() {
-    if (chosenCard1._familyTree > chosenCard2._familyTree) {
-        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
-        playGame1();
-    }
-    if (chosenCard1._familyTree < chosenCard2._familyTree) {
-        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
-        playGame2();
-    } else {
-        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
-        playGame1();
-    }
-}
-
-function compareFearFactor() {
-    if (chosenCard1._fearFactor < chosenCard2._fearFactor) {
-        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
-        playGame1();
-    }
-    if (chosenCard1._fearFactor > chosenCard2._fearFactor) {
-        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
-        playGame2();
-    } else {
-        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
-        playGame1();
-    }
-}
-
-function compareTTRating() {
-    if (chosenCard1._ttRating > chosenCard2.__ttRating) {
-        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
-        playGame1();
-    }
-    if (chosenCard1.__ttRating < chosenCard2.__ttRating) {
-        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
-        playGame2();
-    } else {
-        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
-        playGame1();
-    }
-}
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-// Functions created for use within the Top Trumps game.
-
-function cardCheck() {
-    cardPlayCheck = prompt("Are you sure you don't want to see your card? Please type 'yes' or 'no'.");
-    if (cardPlayCheck == "no") {
-        chooseCard1 = prompt(`${playerName1} would you like to see your card? Please type 'yes' or 'no'.`);
-    } else {
-        endGame();
-    }
-}
-
-function playGame1() {
-    chooseCard1 = prompt(`${playerName1} would you like to see your card? Please type 'yes' or 'no'.`);
-    if (chooseCard1 == "yes") {
-        playCard1();
-        playGame2();
-    } else {
-        cardCheck();
-    }
-
-}
-
-function playGame2() {
-    chooseCard2 = prompt(`${playerName2} would you like to see your card? Please type 'yes' or 'no'.`);
-    if (chooseCard2 == "yes") {
-        playCard2();
-        playGame1();
-    } else {
-        cardCheck();
-    }
-}
-
 function endGame() {
     goodbyeMessage = prompt("Would you like to end the game? Please type 'yes' or 'no'.");
     if (goodbyeMessage == "yes") {
@@ -265,6 +100,231 @@ function endGame() {
     } else {
         welcomeMessage = prompt("Welcome to Top Trumps Harry Potter! Would you like to play? Please type 'yes' or 'no'.");
     }
-};
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//* Shuffle Deck
+
+// function shuffleCards() {
+//     let currentIndex = cards.length;
+//     let temporaryValue;
+//     let randomIndex;
+
+//     while (0 !== currentIndex) {
+//         randomIndex = Math.floor(Math.random() * currentIndex);
+//         currentIndex -= 1;
+//         temporaryValue = cards[currentIndex];
+//         cards[currentIndex] = cards[randomIndex];
+//         cards[randomIndex] = temporaryValue;
+//     }
+
+// }
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//* Chosen Player Card functions.
+
+function playGame1() {
+    if (chosenCardDraw > 0) {
+        deck1.push(chosenCard1, chosenCard2)
+    } else {
+        console.log(chosenCardDraw);
+    };
+    chosenCard1 = deck1.shift();
+    alert(`${playerName1} your card is ${chosenCard1._name}! ${chosenCard1._name}'s Magical Abilities are rated ${chosenCard1._magicalAbility}, their Wand Length is ${chosenCard1._wandLength}, their Family Tree consists of ${chosenCard1._familyTree} members of family, their Fear Factor is ${chosenCard1._fearFactor} and their Top Trumps rating is ${chosenCard1._ttRating}.`);
+    chosenCard2 = deck2.shift();
+    alert(`${playerName2} your card is ${chosenCard2._name}! ${chosenCard2._name}'s Magical Abilities are rated ${chosenCard2._magicalAbility}, their Wand Length is ${chosenCard2._wandLength}, their Family Tree consists of ${chosenCard2._familyTree} members of family, their Fear Factor is ${chosenCard2._fearFactor} and their Top Trumps rating is ${chosenCard2._ttRating}.`);
+    compareAttributeP1();
+}
+
+function playGame2() {
+    if (chosenCardDraw > 0) {
+        deck2.push(chosenCard1, chosenCard2)
+    } else {
+        console.log(chosenCardDraw);
+    };
+    chosenCard2 = deck2.shift();
+    alert(`${playerName2} your card is ${chosenCard2._name}! ${chosenCard2._name}'s Magical Abilities are rated ${chosenCard2._magicalAbility}, their Wand Length is ${chosenCard2._wandLength}, their Family Tree consists of ${chosenCard2._familyTree} members of family, their Fear Factor is ${chosenCard2._fearFactor} and their Top Trumps rating is ${chosenCard2._ttRating}.`);
+    chosenCard1 = deck1.shift();
+    alert(`${playerName1} your card is ${chosenCard1._name}! ${chosenCard1._name}'s Magical Abilities are rated ${chosenCard1._magicalAbility}, their Wand Length is ${chosenCard1._wandLength}, their Family Tree consists of ${chosenCard1._familyTree} members of family, their Fear Factor is ${chosenCard1._fearFactor} and their Top Trumps rating is ${chosenCard1._ttRating}.`);
+    compareAttributeP2();
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//* Attribute comparison functions. 
+
+function compareAttributeP1() {
+    compareAttribute1 = prompt(`${playerName1} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type '1', '2', '3', '4' or '5'`);
+    if (compareAttribute1 == "1") {
+        alert(`${chosenCard1._name}'s Magical Ability is ${chosenCard1._magicalAbility} and  ${chosenCard2._name}'s Magical Ability is ${chosenCard2._magicalAbility}.`);
+        compareMagicalAbility();
+    } else if (compareAttribute1 == "2") {
+        alert(`${chosenCard1._name}'s Wand Length is ${chosenCard1._wandLength} and  ${chosenCard2._name}'s Wand Length is ${chosenCard2._wandLength}.`);
+        compareWandLength();
+    } else if (compareAttribute1 == "3") {
+        alert(`${chosenCard1._name}'s Family Tree is ${chosenCard1._familyTree} and  ${chosenCard2._name}'s Family Tree is ${chosenCard2._familyTree}.`);
+        compareFamilyTree();
+    } else if (compareAttribute1 == "4") {
+        alert(`${chosenCard1._name}'s Fear Factor is ${chosenCard1._fearFactor} and  ${chosenCard2._name}'s Fear Factor is ${chosenCard2._fearFactor}.`);
+        compareFearFactor();
+    } else if (compareAttribute1 == "5") {
+        alert(`${chosenCard1._name}'s Top Trumps Rating is ${chosenCard1._ttRating} and  ${chosenCard2._name}'s Top Trumps Rating is ${chosenCard2._ttRating}.`);
+        compareTTRating();
+    } else {
+        compareAttribute1 = prompt(`${playerName1} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type '1', '2', '3', '4' or '5'`);
+    }
+}
+
+function compareAttributeP2() {
+    compareAttribute2 = prompt(`${playerName2} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type '1', '2', '3', '4' or '5'`);
+    if (compareAttribute2 == "1") {
+        alert(`${chosenCard2._name}'s Magical Ability is ${chosenCard2._magicalAbility} and  ${chosenCard1._name}'s Magical Ability is ${chosenCard1._magicalAbility}.`);
+        compareMagicalAbility();
+    } else if (compareAttribute2 == "2") {
+        alert(`${chosenCard2._name}'s Wand Length is ${chosenCard2._wandLength} and  ${chosenCard1._name}'s Wand Length is ${chosenCard1._wandLength}.`);
+        compareWandLength();
+    } else if (compareAttribute2 == "3") {
+        alert(`${chosenCard2._name}'s Family Tree is ${chosenCard2._familyTree} and  ${chosenCard1._name}'s Family Tree is ${chosenCard1._familyTree}.`);
+        compareFamilyTree();
+    } else if (compareAttribute2 == "4") {
+        alert(`${chosenCard2._name}'s Fear Factor is ${chosenCard2._fearFactor} and  ${chosenCard1._name}'s Fear Factor is ${chosenCard1._fearFactor}.`);
+        compareFearFactor();
+    } else if (compareAttribute2 == "5") {
+        alert(`${chosenCard2._name}'s Top Trumps Rating is ${chosenCard2._ttRating} and  ${chosenCard1._name}'s Top Trumps Rating is ${chosenCard1._ttRating}.`);
+        compareTTRating();
+    } else {
+        compareAttribute2 = prompt(`${playerName2} would you like to choose and compare - 1 magical ability - 2 wand length - 3 family tree - 4 fear factor or 5 top trumps rating? Please type '1', '2', '3', '4' or '5'`);
+    }
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//* Limbo functions.
+
+
+function limbo1() {
+    if (deck1 == 30 || deck2 == 0) {
+        alert(`${playerName1} has won the game!`);
+        endGame();
+    } else if (deck2 == 30 || deck2 == 0) {
+        alert(`${playerName2} has won the game!`);
+        endGame();
+    } else {
+        playGame1();
+    }
+}
+
+function limbo2() {
+    if (deck1 == 30 || deck2 == 0) {
+        alert(`${playerName1} has won the game!`);
+        endGame();
+    } else if (deck2 == 30 || deck2 == 0) {
+        alert(`${playerName2} has won the game!`);
+        endGame();
+    } else {
+        playGame2();
+    }
+}
+
+function limboDraw() {
+    chosenCardDraw = chosenCardDraw.push(chosenCard1, chosenCard2);
+    if (deck1.length > deck2.length) {
+        playGame1();
+    } else if (deck2.length > deck1.length) {
+        playGame2();
+    } else playGame1();
+
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//* Property comparison functions.
+
+function compareMagicalAbility() {
+    if (chosenCard1._magicalAbility > chosenCard2._magicalAbility) {
+        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
+        deck1.push(chosenCard2, chosenCard1);
+        alert(`${playerName1} you now have ${deck1.length} cards in your hand. ${playerName2} you now have ${deck2.length} cards in your hand.`)
+        limbo1();
+    } else if (chosenCard1._magicalAbility < chosenCard2._magicalAbility) {
+        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
+        deck2.push(chosenCard2, chosenCard1);
+        alert(`${playerName2} you now have ${deck2.length} cards in your hand. ${playerName1} you now have ${deck1.length} cards in your hand.`)
+        limbo2();
+    } else {
+        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
+        limboDraw();
+    }
+}
+
+function compareWandLength() {
+    if (chosenCard1._wandLength > chosenCard2._wandLength) {
+        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
+        deck1.push(chosenCard2, chosenCard1);
+        alert(`${playerName1} you now have ${deck1.length} cards in your hand. ${playerName2} you now have ${deck2.length} cards in your hand.`)
+        limbo1();
+    } else if (chosenCard1._wandLength < chosenCard2._wandLength) {
+        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
+        deck2.push(chosenCard2, chosenCard1);
+        alert(`${playerName2} you now have ${deck2.length} cards in your hand. ${playerName1} you now have ${deck1.length} cards in your hand.`)
+        limbo2();
+    } else {
+        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
+        limboDraw();
+    }
+}
+
+function compareFamilyTree() {
+    if (chosenCard1._familyTree > chosenCard2._familyTree) {
+        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
+        deck1.push(chosenCard2, chosenCard1);
+        alert(`${playerName1} you now have ${deck1.length} cards in your hand. ${playerName2} you now have ${deck2.length} cards in your hand.`)
+        limbo1();
+    } else if (chosenCard1._familyTree < chosenCard2._familyTree) {
+        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
+        deck2.push(chosenCard2, chosenCard1);
+        alert(`${playerName2} you now have ${deck2.length} cards in your hand. ${playerName1} you now have ${deck1.length} cards in your hand.`)
+        limbo2();
+    } else {
+        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
+        limboDraw();
+    }
+}
+
+function compareFearFactor() {
+    if (chosenCard1._fearFactor > chosenCard2._fearFactor) {
+        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
+        deck1.push(chosenCard2, chosenCard1);
+        alert(`${playerName1} you now have ${deck1.length} cards in your hand. ${playerName2} you now have ${deck2.length} cards in your hand.`)
+        limbo1();
+    } else if (chosenCard1._fearFactor < chosenCard2._fearFactor) {
+        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
+        deck2.push(chosenCard2, chosenCard1);
+        alert(`${playerName2} you now have ${deck2.length} cards in your hand. ${playerName1} you now have ${deck1.length} cards in your hand.`)
+        limbo2();
+    } else {
+        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
+        limboDraw();
+    }
+}
+
+function compareTTRating() {
+    if (chosenCard1._ttRating > chosenCard2._ttRating) {
+        alert(`${playerName1} wins this round! ${chosenCard2._name} will be added to your deck.`)
+        deck1.push(chosenCard2, chosenCard1);
+        alert(`${playerName1} you now have ${deck1.length} cards in your hand. ${playerName2} you now have ${deck2.length} cards in your hand.`)
+        limbo1();
+    } else if (chosenCard1._ttRating < chosenCard2._ttRating) {
+        alert(`${playerName2} wins this round! ${chosenCard1._name} will be added to your deck.`)
+        deck2.push(chosenCard2, chosenCard1);
+        alert(`${playerName2} you now have ${deck2.length} cards in your hand. ${playerName1} you now have ${deck1.length} cards in your hand.`)
+        limbo2();
+    } else {
+        alert(`It's a draw! Whoever wins the next round will win both cards from this round. Good luck!`)
+        limboDraw();
+    }
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//* Function to start the game.
 
 welcomeToGame();
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
